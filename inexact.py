@@ -51,8 +51,6 @@ def step(user):
 			print(str(t))
 			plt.plot(t, function(t), 'r*')
 	print(k)
-			
-			
 
 step(-0.5)
 plot1(0,5,-0.5)
