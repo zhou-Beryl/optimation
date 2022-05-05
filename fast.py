@@ -7,7 +7,7 @@ import mpl_toolkits.axisartist as axisartist
 
 x1,x2,t = symbols('x1,x2,t')
 def function():
-	fx = pow(x1,2)+2*pow(x2,2)-2*x1*x2-2*x2
+	fx = x1**2+x2**2+x2**2-x1*x2-x1*x2-x2-x2
 	return fx
 	
 def dif(data):
@@ -29,7 +29,7 @@ def minn(f):
 	return t_min
 
 def main(x0,theta):
-	data = list()
+	data = []
 	grand = dif(x0)
 	data1 = [x0[0],x0[1],grand]
 	data.append(data1)
