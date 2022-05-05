@@ -13,10 +13,9 @@ def function():
 def dif(data):
 	f = function()
 	grand1 = [diff(f,x1),diff(f,x2)]
-	grand2 = [] 
 	p = grand1[0].subs(x1,data[0]).subs(x2,data[1])
 	q = grand1[1].subs(x1,data[0]).subs(x2,data[1])
-	grand2.apppend([p,q])
+	grand2=[p,q]
 	return grand2
 	
 def mo(grand):
@@ -24,41 +23,38 @@ def mo(grand):
 	return x_len
 
 def minn(f):
-	t_min = diff(f)
+	t_diff = diff(f)
 	t_min = solve(t_diff)
 	return t_min
 
 def main(x0,theta):
 	data = []
 	grand = dif(x0)
-	data1 = [x0[0],x0[1],grand]
+	data1 = [x0,grand]
 	data.append(data1)
 	grand_len = mo(grand)
 	while grand_len > theta:
 		p = -np.array(grand)
 		x = x0 + t*p
-		t_f = function(x).subs(x1,x[0]).subs(x2,x[1])
+		t_f = function().subs(x1,x[0]).subs(x2,x[1])
 		t_min = minn(t_f)
 		
 		x0 = x0 +t_min*p
 		grand = dif(x0)
 		grand_len = mo(grand)
-		data1 = [x0[0],x0[1],grand]
+		data1 = [x0,grand]
 		data.append(data1)	
 	return data	
-def file1(data):	
+def file1(data):
+	'''问题待排查'''
 	with open(r"11.text",mode='w',encoding='utf-8') as f:
 		for i in range(0,len(data)):
 			f.write("%d: \t" % (i+1))
-			for j in range(0,3):
-				f.write('f(%.3f)=%.7f\t' % (data[i][j],
-					function(data[i][j])))
+			for j in range(0,2):
+				m = data[i]
+				f.write('f(%.3f)=%.7f\t' % m[j])
 			f.write("\n")
 		print("写入成功")	
 		
 data = main([0,0],0.00001)
-file(data)
-
-
-
-
+print(data)
