@@ -48,21 +48,23 @@ def main(x0,theta):
 	
 def draww(data):
 	fig = plt.figure()
-	ax = axisartist.Subplot(fig,111)
+	ax = axisartist.Subplot(fig, 111)
 	fig.add_axes(ax)
 	ax.axis["bottom"].set_axisline_style("-|>", size=1.5)
 	ax.axis["left"].set_axisline_style("->", size=1.5)
 	ax.axis["top"].set_visible(False)
 	ax.axis["right"].set_visible(False)
-	plt.title(r'$Gradient \ method - steepest \ descent \ method$')
+	
 	datax =[]
 	datay =[]
 	for i in range(0,len(data)):
 		datax.append(data[i][0])
 		datay.append(data[i][1])
+	
 	plt.plot(datax, datay, label=r'$f(x_1,x_2)=x_1^2+2 \cdot x_2^2-2 \cdot x_1 \cdot x_2-2 \cdot x_2$')
+	plt.title(r'$Gradient \ method - steepest \ descent \ method$')
 	plt.legend()
-	#plt.scatter(1, 1, marker=(5, 1), c=5, s=1000)
+	plt.scatter(datax,datay, marker="8", c='r')
 	plt.grid()
 	plt.xlabel(r'$x_1$', fontsize=20)
 	plt.ylabel(r'$x_2$', fontsize=20)
