@@ -45,15 +45,39 @@ def main(x0,theta):
 		data1 = [x0[0],x0[1]]
 		data.append(data1)	
 	return data	
+	
+def draww(data):
+	fig = plt.figure()
+	ax = axisartist.Subplot(fig,111)
+	fig.add_axes(ax)
+	ax.axis["bottom"].set_axisline_style("-|>", size=1.5)
+	ax.axis["left"].set_axisline_style("->", size=1.5)
+	ax.axis["top"].set_visible(False)
+	ax.axis["right"].set_visible(False)
+	plt.title(r'$Gradient \ method - steepest \ descent \ method$')
+	datax =[]
+	datay =[]
+	for i in range(0,len(data)):
+		datax.append(data[i][0])
+		datay.append(data[i][1])
+	plt.plot(datax, datay, label=r'$f(x_1,x_2)=x_1^2+2 \cdot x_2^2-2 \cdot x_1 \cdot x_2-2 \cdot x_2$')
+	plt.legend()
+	#plt.scatter(1, 1, marker=(5, 1), c=5, s=1000)
+	plt.grid()
+	plt.xlabel(r'$x_1$', fontsize=20)
+	plt.ylabel(r'$x_2$', fontsize=20)
+	plt.show()
+	
 def file1(data):
 	'''问题待排查'''
 	with open(r"11.text",mode='w',encoding='utf-8') as f:
 		for i in range(0,len(data)):
 			f.write("%d: \t" % (i+1))
 			for j in [0,1]:
-				f.write("%d: \t" % float(data[i][j]))
+				f.write("%3f: \t" % (data[i][j]))
 			f.write("\n")
 		print("写入成功")	
-		
+				
 data = main([0,0],0.0001)
 file1(data)
+draww(data)
