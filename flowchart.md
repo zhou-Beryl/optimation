@@ -13,10 +13,9 @@ graph TD
     F --> K[金丝雀部署（Canary Deployment）]
     
     A --> L[OpenStack升级]
-    L --> M[升级控制节点]
-    L --> N[升级计算节点]
-    L --> O[升级存储节点]
+    L --> M[分批次升级]
+    L --> N[升级控制、计算、存储节点]
     
-    A --> P[Kubernetes升级]
-    P --> Q[滚动升级策略]
-    P --> R[逐步更新各个节点的Kubernetes组件]
+    A --> O[Kubernetes升级]
+    P --> P[滚动升级策略]
+    P --> Q[逐步更新各个节点的Kubernetes组件]
