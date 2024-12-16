@@ -1,21 +1,24 @@
 ```mermaid
-graph TD
-    A[升级策略] --> B[不兼容性和依赖冲突的场景]
-    B --> C[拆分模式（split mode）]
-    B --> D[滚动升级（rolling upgrade）]
-    B --> E[局部并行升级（partial parallel upgrade）]
-    
-    A --> F[高可用和大规模集群系统的升级方法]
-    F --> G[快速重启（Fast reboot）]
-    F --> H[滚动升级（rolling upgrade）]
-    F --> I[大反转（big flip）]
-    F --> J[蓝绿部署（Blue-Green Deployment）]
-    F --> K[金丝雀部署（Canary Deployment）]
-    
-    A --> L[OpenStack升级]
-    L --> M[分批次升级]
-    L --> N[升级控制、计算、存储节点]
-    
-    A --> O[Kubernetes升级]
-    P --> P[滚动升级策略]
-    P --> Q[逐步更新各个节点的Kubernetes组件]
+mindmap
+  root((升级策略))
+    subgraph 1[不兼容性和依赖冲突的升级策略]
+      splitMode(拆分模式)
+      rollingUpgrade(滚动升级)
+      partialParallelUpgrade(局部并行升级)
+    end
+    subgraph 2[高可用和大规模集群系统的升级方法]
+      fastReboot(快速重启)
+      rollingUpgrade2(滚动升级)
+      bigFlip(大反转)
+      blueGreenDeployment(蓝绿部署)
+      canaryDeployment(金丝雀部署)
+    end
+    subgraph 3[OpenStack 升级流程]
+      controlNode(升级控制节点)
+      computeNode(升级计算节点)
+      storageNode(升级存储节点)
+    end
+    subgraph 4[Kubernetes 升级流程]
+      rollingUpgrade3(滚动升级)
+      updateK8SComponent(逐步更新K8S组件)
+    end
