@@ -1,66 +1,24 @@
-# 私有云架构中“执行升级”过程流程图
-
 ```mermaid
-flowchart TD
-    A[开始执行升级] --> B[停止相关服务]
-    
-    subgraph 停止相关服务
-        B1[通知用户和团队]
-        B2[优雅停机]
-        B3[关闭新连接]
-        B4[完成现有任务]
-        B5[停止依赖服务]
-        B6[验证服务已停止]
+mindmap
+  root((升级策略))
+    subgraph 1[不兼容性和依赖冲突的升级策略]
+      splitMode(拆分模式)
+      rollingUpgrade(滚动升级)
+      partialParallelUpgrade(局部并行升级)
     end
-    
-    B --> B1
-    B --> B2
-    B2 --> B3
-    B3 --> B4
-    B4 --> B5
-    B5 --> B6
-    
-    B6 --> C[部署新版本]
-    C --> C1[获取新版本代码或镜像]
-    C1 --> C2[备份现有环境]
-    C2 --> C3[使用自动化工具]
-    C3 --> C4[上传新版本]
-    C4 --> C5[解压和安装]
-    C5 --> C6[更新服务配置]
-    
-    C6 --> D[数据库迁移]
-    D --> D1[准备迁移脚本]
-    D1 --> D2[备份数据库]
-    D2 --> D3[执行迁移脚本]
-    D3 --> D4[验证迁移结果]
-    
-    D4 --> E[配置更新]
-    E --> E1[更新配置文件]
-    E1 --> E2[密钥和证书管理]
-    E2 --> E3[验证配置]
-    
-    E3 --> F[启动新服务]
-    F --> F1[启动服务]
-    F1 --> F2[健康检查]
-    F2 --> F3[滚动升级]
-    
-    F3 --> G[监控和验证]
-    G --> G1[实时监控]
-    G1 --> G2[日志监控]
-    G2 --> G3[功能验证]
-    G3 --> G4[回归测试]
-    
-    G4 --> H[处理升级中的问题]
-    H --> H1[问题识别和分类]
-    H1 --> H2[快速响应]
-    H2 --> H3[决定是否回滚]
-    H3 -->|是| I[回滚到旧版本]
-    H3 -->|否| J[继续升级]
-    
-    I --> K[记录和报告]
-    J --> K[记录和报告]
-    
-    K --> L[升级完成]
-    
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style L fill:#bbf,stroke:#333,stroke-width:2px
+    subgraph 2[高可用和大规模集群系统的升级方法]
+      fastReboot(快速重启)
+      rollingUpgrade2(滚动升级)
+      bigFlip(大反转)
+      blueGreenDeployment(蓝绿部署)
+      canaryDeployment(金丝雀部署)
+    end
+    subgraph 3[OpenStack 升级流程]
+      controlNode(升级控制节点)
+      computeNode(升级计算节点)
+      storageNode(升级存储节点)
+    end
+    subgraph 4[Kubernetes 升级流程]
+      rollingUpgrade3(滚动升级)
+      updateK8SComponent(逐步更新K8S组件)
+    end
